@@ -15,6 +15,7 @@ const $ = id => document.getElementById(id);
 const money = value => "RM" + Number(value || 0).toFixed(2);
 let products = [];
 let activeCategory = "";
+let pendingWhatsAppMessage = "";
 
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, ch => ({
@@ -100,6 +101,11 @@ function whatsappUrl(message) {
     ? `https://wa.me/${WHATSAPP_NUMBER.trim()}?text=${text}`
     : `https://wa.me/?text=${text}`;
 }
+function requestWhatsApp(message) {
+  pendingWhatsAppMessage = message || "Salam CETAKNOW CORP, saya ingin mendapatkan maklumat lanjut.";
+  $("customerInfoForm").reset();
+  $("customerInfoDialog").showModal();
+}
 function openProduct(id) {
   const p = productFromId(id);
   if (!p) return;
@@ -139,10 +145,10 @@ function openProduct(id) {
         <label>Kuantiti (pcs)<input id="quoteQuantity" type="number" min="1" value="${Math.max(Number(p.moq)||1, Number(tiers[0]?.quantity_min)||1)}"></label>
       </div>
       <div class="quote-output" id="quoteOutput" aria-live="polite"></div>
-      <a class="btn btn-dark quote-whatsapp" id="quoteWhatsapp" target="_blank" rel="noopener">Minta quotation rasmi <span>↗</span></a>` : `<div class="no-price">Harga indikatif belum tersedia untuk produk ini. Hubungi kami untuk mendapatkan quotation.</div><a class="btn btn-dark quote-whatsapp" href="${whatsappUrl(`Salam CETAKNOW CORP, saya ingin mendapatkan quotation untuk ${p.name} (${p.code || "-"})`)}" target="_blank" rel="noopener">Minta quotation <span>↗</span></a>`}
+      <button class="btn btn-dark quote-whatsapp" id="quoteWhatsapp" type="button">Minta quotation rasmi <span>↗</span></button>` : `<div class="no-price">Harga indikatif belum tersedia untuk produk ini. Hubungi kami untuk mendapatkan quotation.</div><button class="btn btn-dark quote-whatsapp" id="quoteWhatsapp" type="button">Minta quotation <span>↗</span></button>`}
     </section>
     ${gallery.length ? `<section class="reference-gallery"><div><span class="eyebrow dark-eyebrow">INSPIRATION</span><h3>Contoh produk & galeri</h3></div><div class="reference-grid">${gallery.map(g=>`<a href="${escapeHtml(g.image_url)}" target="_blank" rel="noopener"><img src="${escapeHtml(g.image_url)}" alt="${escapeHtml(g.caption || "Contoh produk")}" loading="lazy"><span>${g.image_type === "testimonial" ? "Testimoni pelanggan" : "Contoh produk"}${g.caption ? ` · ${escapeHtml(g.caption)}` : ""}</span></a>`).join("")}</div></section>` : ""}
-    <div class="detail-bottom-cta"><div><b>Perlukan cadangan atau customisation?</b><small>Kami boleh bantu semak pilihan yang sesuai untuk projek anda.</small></div><a class="btn btn-light" href="${whatsappUrl(`Salam CETAKNOW CORP, saya ingin bertanya tentang ${p.name} (${p.code || "-"})`)}" target="_blank" rel="noopener">Hubungi kami ↗</a></div>
+    <div class="detail-bottom-cta"><div><b>Perlukan cadangan atau customisation?</b><small>Kami boleh bantu semak pilihan yang sesuai untuk projek anda.</small></div><button class="btn btn-light detail-contact-whatsapp" type="button">Hubungi kami ↗</button></div>
   `;
   $("dialogBody").querySelectorAll("[data-gallery-image]").forEach(button => button.addEventListener("click", () => {
     const main = $("detailMainImage");
@@ -150,6 +156,10 @@ function openProduct(id) {
     $("dialogBody").querySelectorAll(".detail-thumb").forEach(el => el.classList.remove("selected"));
     button.classList.add("selected");
   }));
+  const quoteButton = $("quoteWhatsapp");
+  if (quoteButton) quoteButton.addEventListener("click", () => requestWhatsApp(quoteButton.dataset.message || `Salam CETAKNOW CORP, saya ingin mendapatkan quotation untuk ${p.name} (${p.code || "-"}).`));
+  const detailContact = $("dialogBody").querySelector(".detail-contact-whatsapp");
+  if (detailContact) detailContact.addEventListener("click", () => requestWhatsApp(`Salam CETAKNOW CORP, saya ingin bertanya tentang ${p.name} (${p.code || "-"}).`));
   if (tiers.length) setupQuoteCalculator(p);
   $("productDialog").showModal();
 }
@@ -172,17 +182,17 @@ function setupQuoteCalculator(product) {
     const output = $("quoteOutput");
     if (!qty || qty < 1) {
       output.innerHTML = `<p class="quote-hint">Masukkan kuantiti yang sah.</p>`;
-      $("quoteWhatsapp").href = whatsappUrl(quoteMessage(product,item.value,method.value,selectedSize,qty||0,null));
+      $("quoteWhatsapp").dataset.message = quoteMessage(product,item.value,method.value,selectedSize,qty||0,null);
       return;
     }
     if (!tier) {
       output.innerHTML = `<p class="quote-hint">Tiada tier harga direkodkan untuk ${qty.toLocaleString("en-MY")} pcs. Sila minta quotation untuk kuantiti ini.</p>`;
-      $("quoteWhatsapp").href = whatsappUrl(quoteMessage(product,item.value,method.value,selectedSize,qty,null));
+      $("quoteWhatsapp").dataset.message = quoteMessage(product,item.value,method.value,selectedSize,qty,null);
       return;
     }
     const total = Number(tier.selling_price) * qty;
     output.innerHTML = `<div class="quote-price"><small>ANGGARAN HARGA SEUNIT</small><strong>${money(tier.selling_price)} <small>/ pc</small></strong></div><div class="quote-total"><span>Anggaran jumlah (${qty.toLocaleString("en-MY")} pcs)</span><b>${money(total)}</b></div><p class="quote-hint">Harga indikatif sahaja. Pengesahan akhir melalui quotation rasmi.</p>`;
-    $("quoteWhatsapp").href = whatsappUrl(quoteMessage(product,item.value,method.value,selectedSize,qty,tier));
+    $("quoteWhatsapp").dataset.message = quoteMessage(product,item.value,method.value,selectedSize,qty,tier);
   };
   item.addEventListener("change", updateMethod);
   method.addEventListener("change", updateSize);
@@ -206,7 +216,19 @@ $("categoryFilter").addEventListener("change", () => { activeCategory = $("categ
 $("closeDialog").addEventListener("click", () => $("productDialog").close());
 $("productDialog").addEventListener("click", event => { if (event.target === $("productDialog")) $("productDialog").close(); });
 $("year").textContent = new Date().getFullYear();
-$("generalWhatsapp").href = whatsappUrl("Salam CETAKNOW CORP, saya ingin bertanya tentang corporate gifts dan printing.");
+$("generalWhatsapp").addEventListener("click", event => { event.preventDefault(); requestWhatsApp("Salam CETAKNOW CORP, saya ingin bertanya tentang corporate gifts dan printing."); });
+$("customerInfoForm").addEventListener("submit", event => {
+  event.preventDefault();
+  const name = $("customerName").value.trim();
+  const phone = $("customerPhone").value.trim();
+  const address = $("customerAddress").value.trim();
+  if (!name || !phone || !address) return;
+  const message = `${pendingWhatsAppMessage}\n\nMAKLUMAT PELANGGAN\nNama: ${name}\nNo. Telefon: ${phone}\nAlamat postage: ${address}\n\nTerima kasih.`;
+  window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
+  $("customerInfoDialog").close();
+});
+$("closeCustomerInfo").addEventListener("click", () => $("customerInfoDialog").close());
+$("customerInfoDialog").addEventListener("click", event => { if (event.target === $("customerInfoDialog")) $("customerInfoDialog").close(); });
 $("mobileMenu").addEventListener("click", () => document.querySelector(".desktop-nav").classList.toggle("nav-open"));
 document.addEventListener("keydown", event => {
   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
