@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b4e">
+  <meta name="description" content="Katalog hadiah korporat dan merchandise CETAKNOW CORP. Terokai produk, pilihan cetakan dan anggaran harga.">
+  <title>CETAKNOW CORP | Corporate Gifts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="announcement"><span>IDEA HADIAH KORPORAT, DIREKA UNTUK JENAMA ANDA</span><span>Quality • Creativity • Service</span></div>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="CETAKNOW CORP homepage">
+      <span class="brand-mark">C</span>
+      <span><strong>CETAKNOW CORP</strong><small>CORPORATE GIFTS & PRINTING</small></span>
+    </a>
+    <nav class="desktop-nav"><a href="#catalogue">Katalog</a><a href="#why-us">Kenapa Cetaknow</a><a href="#contact">Hubungi Kami</a></nav>
+    <a class="header-cta" href="#catalogue">Terokai Produk <span>↗</span></a>
+    <button class="mobile-menu" id="mobileMenu" aria-label="Buka menu">☰</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> CORPORATE GIFT COLLECTION</div>
+        <h1>Hadiah bermakna.<br><em>Jenama diingati.</em></h1>
+        <p>Temui pilihan corporate gifts dan merchandise yang boleh disesuaikan untuk acara, pelanggan, staf dan kempen jenama anda.</p>
+        <div class="hero-actions"><a class="btn btn-light" href="#catalogue">Lihat katalog <span>↓</span></a><a class="text-link" href="#contact">Bincang projek anda <span>↗</span></a></div>
+        <div class="hero-proof"><div class="proof-avatars"><i>G</i><i>C</i><i>+</i></div><span>Idea hadiah untuk setiap momen perniagaan</span></div>
+      </div>
+      <div class="hero-art" aria-label="Corporate gift collection">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="art-card art-card-main"><div class="art-label">MAKE IT<br><b>MEMORABLE.</b></div><div class="art-cube"><span></span></div><div class="art-card-foot"><b>BRANDED FOR YOU</b><small>CORPORATE COLLECTION</small></div></div>
+        <div class="floating-chip chip-top">✦ Custom branding</div><div class="floating-chip chip-bottom">✳ Made to impress</div>
+        <div class="hero-number">01 <span>/ COLLECTION</span></div>
+      </div>
+      <div class="hero-bottom"><span>GIFTING MADE PERSONAL</span><span>SCROLL TO EXPLORE ↓</span></div>
+    </section>
+
+    <section class="trust-strip" id="why-us">
+      <div><span class="trust-icon">✦</span><b>Custom Branding</b><small>Serlahkan identiti jenama anda</small></div>
+      <div><span class="trust-icon">◈</span><b>Pilihan Pelbagai</b><small>Produk untuk setiap keperluan</small></div>
+      <div><span class="trust-icon">◎</span><b>Harga Mengikut Kuantiti</b><small>Anggaran harga lebih mudah</small></div>
+      <div><span class="trust-icon">↗</span><b>Sokongan Projek</b><small>Bantuan dari idea hingga siap</small></div>
+    </section>
+
+    <section class="catalogue-section" id="catalogue">
+      <div class="section-heading">
+        <div><div class="eyebrow dark-eyebrow">OUR PRODUCT RANGE</div><h2>Terokai katalog kami<span>.</span></h2><p>Pilih produk dan semak pilihan customisation serta anggaran harga.</p></div>
+        <div class="catalogue-count"><strong id="productCount">—</strong><span>PRODUK</span></div>
+      </div>
+      <div class="catalogue-tools">
+        <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Cari produk, kod atau kategori..."><kbd>⌘ K</kbd></label>
+        <select id="categoryFilter" aria-label="Tapis kategori"><option value="">Semua kategori</option></select>
+      </div>
+      <div class="category-chips" id="categoryChips"></div>
+      <div class="product-grid" id="productGrid"><div class="loading-state"><span class="loader"></span><p>Memuatkan katalog produk...</p></div></div>
+      <div class="catalogue-note"><span>ⓘ</span> Harga yang dipaparkan adalah anggaran indikatif dan tertakluk kepada pengesahan quotation, artwork, stok serta spesifikasi akhir.</div>
+    </section>
+
+    <section class="contact-banner" id="contact">
+      <div><div class="eyebrow">LET'S CREATE SOMETHING GREAT</div><h2>Ada idea untuk projek<br>corporate gift anda?</h2><p>Kongsikan keperluan anda. Pasukan kami sedia membantu mencadangkan pilihan yang sesuai.</p></div>
+      <a class="btn btn-light" id="generalWhatsapp" href="https://wa.me/?text=Salam%20CETAKNOW%20CORP%2C%20saya%20ingin%20bertanya%20tentang%20corporate%20gift." target="_blank" rel="noopener">Hubungi melalui WhatsApp <span>↗</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="#"><span class="brand-mark">C</span><span><strong>CETAKNOW CORP</strong><small>CORPORATE GIFTS & PRINTING</small></span></a><span>© <span id="year"></span> CETAKNOW CORP. All rights reserved.</span><a href="#catalogue">Kembali ke atas ↑</a></footer>
+
+  <dialog id="productDialog" class="product-dialog">
+    <div class="dialog-top"><div><span class="eyebrow dark-eyebrow">PRODUCT DETAILS</span><b id="dialogProductName">Product</b></div><button id="closeDialog" class="close-button" aria-label="Tutup">✕</button></div>
+    <div id="dialogBody" class="dialog-body"></div>
+  </dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
