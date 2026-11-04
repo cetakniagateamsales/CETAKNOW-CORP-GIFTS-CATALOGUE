@@ -8,7 +8,7 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_31nPHL6gFDmhy0qGH49vDA_xX6FSSm-
 // Masukkan nombor WhatsApp rasmi CETAKNOW CORP dalam format antarabangsa tanpa +.
 // Contoh format Malaysia: 60123456789. Biarkan kosong untuk membolehkan pelanggan
 // memilih/menghantar mesej melalui WhatsApp Share.
-const WHATSAPP_NUMBER = "";
+const WHATSAPP_NUMBER = "601115304189";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 const $ = id => document.getElementById(id);
