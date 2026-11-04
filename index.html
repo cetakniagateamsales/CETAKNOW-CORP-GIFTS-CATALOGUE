@@ -64,7 +64,7 @@
 
     <section class="contact-banner" id="contact">
       <div><div class="eyebrow">LET'S CREATE SOMETHING GREAT</div><h2>Ada idea untuk projek<br>corporate gift anda?</h2><p>Kongsikan keperluan anda. Pasukan kami sedia membantu mencadangkan pilihan yang sesuai.</p></div>
-      <a class="btn btn-light" id="generalWhatsapp" href="https://wa.me/?text=Salam%20CETAKNOW%20CORP%2C%20saya%20ingin%20bertanya%20tentang%20corporate%20gift." target="_blank" rel="noopener">Hubungi melalui WhatsApp <span>↗</span></a>
+      <button class="btn btn-light" id="generalWhatsapp" type="button">Hubungi melalui WhatsApp <span>↗</span></button>
     </section>
   </main>
 
@@ -73,6 +73,16 @@
   <dialog id="productDialog" class="product-dialog">
     <div class="dialog-top"><div><span class="eyebrow dark-eyebrow">PRODUCT DETAILS</span><b id="dialogProductName">Product</b></div><button id="closeDialog" class="close-button" aria-label="Tutup">✕</button></div>
     <div id="dialogBody" class="dialog-body"></div>
+  </dialog>
+  <dialog id="customerInfoDialog" class="customer-info-dialog">
+    <div class="customer-form-head"><div><span class="eyebrow dark-eyebrow">CUSTOMER INFORMATION</span><h2>Maklumat pelanggan</h2><p>Sila lengkapkan maklumat di bawah sebelum meneruskan permintaan melalui WhatsApp.</p></div><button id="closeCustomerInfo" class="close-button" type="button" aria-label="Tutup">✕</button></div>
+    <form id="customerInfoForm" class="customer-info-form">
+      <label>Nama penuh <span>*</span><input id="customerName" name="customerName" type="text" autocomplete="name" placeholder="Nama anda / nama syarikat" required></label>
+      <label>Nombor telefon <span>*</span><input id="customerPhone" name="customerPhone" type="tel" autocomplete="tel" placeholder="Contoh: 0123456789" required></label>
+      <label>Alamat postage <span>*</span><textarea id="customerAddress" name="customerAddress" rows="3" autocomplete="street-address" placeholder="Alamat lengkap, poskod, bandar dan negeri" required></textarea></label>
+      <p class="customer-form-note">Maklumat ini akan dimasukkan ke dalam mesej WhatsApp untuk tujuan quotation dan urusan penghantaran.</p>
+      <button class="btn btn-dark customer-submit" type="submit">Teruskan ke WhatsApp <span>↗</span></button>
+    </form>
   </dialog>
   <div id="toast" class="toast" role="status"></div>
   <script type="module" src="/app.js"></script>
