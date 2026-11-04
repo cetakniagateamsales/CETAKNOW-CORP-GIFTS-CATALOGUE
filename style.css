@@ -35,3 +35,20 @@ body{background:var(--ivory);color:var(--ink);font-family:"DM Sans",sans-serif}
 .loading-state,.empty-state{border-radius:3px;border-color:#d8cdbb;background:#fffdf9}.empty-state h3{color:#172d49}.loader{border-color:#e8dfd1;border-top-color:#a9844d}
 @media(max-width:900px){.hero{padding-left:6vw;padding-right:6vw}.trust-strip{padding-left:6vw;padding-right:6vw}.catalogue-section{padding-left:6vw;padding-right:6vw}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.contact-banner{padding-left:6vw;padding-right:6vw;margin:0}.hero:after{right:2%}}
 @media(max-width:640px){.announcement{padding:0 15px;font-size:7px}.site-header{height:68px;padding:0 17px}.brand-mark{width:38px;height:38px}.desktop-nav{top:67px;background:#fffdf9}.hero{padding:52px 24px 64px;min-height:auto;grid-template-columns:1fr}.hero:after{display:none}.hero h1{font-size:43px}.hero-art{height:300px;margin-top:22px}.art-orbit{width:260px;height:260px}.orbit-two{width:330px;height:330px}.art-card-main{width:205px;height:250px}.hero-bottom{padding:0 24px;font-size:7px}.trust-strip{grid-template-columns:1fr 1fr;padding:22px;gap:18px 12px}.trust-strip>div{padding-left:42px}.catalogue-section{padding:58px 17px 65px}.section-heading h2{font-size:29px}.catalogue-count{padding-left:12px}.catalogue-count strong{font-size:25px}.catalogue-tools{grid-template-columns:1fr}.product-grid{grid-template-columns:1fr;gap:15px}.product-image{height:245px}.product-card-content{padding:17px}.contact-banner{padding:38px 23px;margin:0}.contact-banner h2{font-size:27px}.contact-banner:after{font-size:240px;right:-8%;top:-35px}.site-footer{padding:20px 18px}.quote-fields{grid-template-columns:1fr 1fr}}
+
+/* Customer details form before WhatsApp quotation */
+.customer-info-dialog{width:min(560px,calc(100% - 28px));max-height:90vh;overflow:auto;padding:0;border:1px solid #c5a46d;border-radius:4px;background:#fffdf8;color:#172b45;box-shadow:0 28px 90px #06142655}
+.customer-info-dialog::backdrop{background:#071426b8;backdrop-filter:blur(4px)}
+.customer-form-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;padding:25px 27px 20px;border-bottom:1px solid #e7dece;background:linear-gradient(120deg,#fffdf8,#f1eadc)}
+.customer-form-head h2{font:800 23px Manrope;margin:9px 0 7px;color:#142b47}
+.customer-form-head p{font-size:11px;line-height:1.7;color:#777d84;margin:0;max-width:410px}
+.customer-info-form{display:grid;gap:16px;padding:24px 27px 27px}
+.customer-info-form label{display:grid;gap:7px;font-size:10px;font-weight:800;letter-spacing:.04em;color:#34465c}
+.customer-info-form label>span{display:inline;color:#a4773d}
+.customer-info-form input,.customer-info-form textarea{width:100%;border:1px solid #d9cfbd;border-radius:3px;background:#fff;color:#1c3049;padding:12px 13px;font:500 12px "DM Sans",sans-serif;outline:none;transition:border-color .2s,box-shadow .2s}
+.customer-info-form textarea{resize:vertical;min-height:88px;line-height:1.6}
+.customer-info-form input:focus,.customer-info-form textarea:focus{border-color:#b28d56;box-shadow:0 0 0 3px #c5a46d22}
+.customer-form-note{margin:0;color:#898174;font-size:9px;line-height:1.6;padding:11px 13px;background:#f1ecdf;border-left:2px solid #b8955e}
+.customer-submit{width:100%;min-height:48px;justify-content:center}
+.quote-whatsapp{cursor:pointer}
+@media(max-width:640px){.customer-form-head{padding:21px 19px 17px}.customer-info-form{padding:19px;gap:14px}.customer-form-head h2{font-size:20px}}
